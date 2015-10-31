@@ -1,20 +1,20 @@
 from .base import *
+from .passwords import *
+import os
 
-DEBUG = False
+# from production
+# ALLOWED_HOSTS = ['tweetset.com','www.tweetset.com']
+# STATIC_URL = 'http://static.tweetset.com/'
 
-ALLOWED_HOSTS = ['tweetset.com','www.tweetset.com']
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tweetset',
-        'USER': 'tweetset',
-        'PASSWORD': 'kuracpalac',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-STATIC_URL = 'http://static.tweetset.com/'
+DEBUG_TOOLBAR = True
 
-PYTHON_EXECUTABLE = '/srv/django-envs/tweetset/bin/python'
+if DEBUG:
+    # Show emails in the console during developement.
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+if DEBUG_TOOLBAR:
+    INTERNAL_IPS = ('127.0.0.1',)
